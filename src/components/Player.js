@@ -7,7 +7,7 @@ export const Player = (props) => {
             <input type="checkbox"/>
             <button onClick={props.removePlayer(props.id)}>delete</button>
             <span className="player-name">1111{props.name}</span>
-            <Counter></Counter>
+            <Counter score={props.score} changeScore={props.changeScore}/>
         </div>
     )
 };
