@@ -13,18 +13,18 @@ class App extends React.Component{
         ]
     };
 
-    handleRemovePlayer(id){
+    handleRemovePlayer = (id) => {
         console.log('remove');
 
         this.setState(prevState =>{
             const players = prevState.players.filter(item => item.id !==id);
-            return players
+            return {players}
         })
-    }
+    };
 
-    handleChangeScore(id){
-        console.log('remove');
-    }
+    handleChangeScore = (id, delta) => {
+        console.log('remove', id, delta);
+    };
 
     render() {
         console.log('asdadsdsdsd');
