@@ -30,12 +30,14 @@ class App extends React.Component{
                 <Header title="My scoreboard" player={this.state.players}/>
                 {
 
-                    this.state.players.map((initial) => {
-                        return <Player initial={initial} key={initial.id}
+                    this.state.players.map((initial) => (
+                        <Player key={initial.id}
+                                       initial={initial}
                                        removePlayer={this.handleRemovePlayer}
-                                       changeScore={this.handleChangeScore}
-                        />
-                    })
+                                       changeScore={this.handleChangeScore}>
+                        </Player>
+                        )
+                    )
                 }
             </div>
         );

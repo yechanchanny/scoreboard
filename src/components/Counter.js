@@ -2,14 +2,15 @@ import React from "react";
 
 class Counter extends React.Component{
     render() {
+        const initial = this.props.initial;
+        console.log(initial);
         return (
             <div className="counter">
-                {this.initial}
-                {/*<button className="counter-action decrement"*/}
-                {/*        onClick={this.props.changeScore(this.id, -1)}> - </button>*/}
-                {/*<span className="counter-score">{this.score}</span>*/}
-                {/*<button className="counter-action increment"*/}
-                {/*        onClick={this.props.changeScore(this.props.id, 1)}> + </button>*/}
+                <button className="counter-action decrement"
+                        onClick={() => this.props.changeScore(initial.id, -1)}> - </button>
+                <span className="counter-score">{initial.score}</span>
+                <button className="counter-action increment"
+                        onClick={() => this.props.changeScore(initial.id, 1)}> + </button>
             </div>
         );
     }
