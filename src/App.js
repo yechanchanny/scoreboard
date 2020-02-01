@@ -35,10 +35,10 @@ class App extends React.Component{
     render() {
         return (
             <div className="scoreboard">
-                <Header title="My scoreboard" player={this.state.players}/>
+                <Header title="My scoreboard" player={this.props.players}/>
                 {
 
-                    this.state.players.map((initial) => (
+                    this.props.players.map((initial) => (
                         <Player key={initial.id}
                                        initial={initial}
                                        removePlayer={this.handleRemovePlayer}
@@ -52,4 +52,10 @@ class App extends React.Component{
     }
 }
 
-export default App;
+const  mapStateToProps = (state) => ({
+  //왼쪽은 props, 오른쪽은 store의 state
+  players: state.playerReducer.players,
+});
+
+export default connect(mapStateToProps)(App);
+// export default App;
