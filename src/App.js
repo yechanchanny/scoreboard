@@ -14,8 +14,6 @@ class App extends React.Component{
     };
 
     handleRemovePlayer = (id) => {
-        console.log('remove');
-
         this.setState(prevState =>{
             const players = prevState.players.filter(item => item.id !==id);
             return {players}
@@ -27,13 +25,13 @@ class App extends React.Component{
     };
 
     render() {
-        console.log('asdadsdsdsd');
         return (
             <div className="scoreboard">
-                <Header title="My scoreboard" totalPlayers={1 + 10}/>
+                <Header title="My scoreboard" player={this.state.players}/>
                 {
+
                     this.state.players.map((initial) => {
-                        return <Player name={initial.name} score={initial.score} key={initial.id}
+                        return <Player initial={initial} key={initial.id}
                                        removePlayer={this.handleRemovePlayer}
                                        changeScore={this.handleChangeScore}
                         />
