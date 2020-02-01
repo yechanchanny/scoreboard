@@ -2,25 +2,20 @@ import React from 'react';
 import './App.css';
 import {Header} from './components/Header';
 import {Player} from './components/Player';
+import {useSelector} from "react-redux";
 
-class App extends React.Component{
-    state = {
-        players : [
-            {name: 'LDK1', score: 5, id: 1},
-            {name: 'LDK2', score: 5, id: 2},
-            {name: 'LDK3', score: 5, id: 3},
-            {name: 'LDK4', score: 5, id: 4},
-        ]
-    };
+function App() {
 
-    handleRemovePlayer = (id) => {
+    const players = useSelector(state => state.playerReducer.players);
+
+    const handleRemovePlayer = (id) => {
         this.setState(prevState =>{
             const players = prevState.players.filter(item => item.id !==id);
             return {players}
         })
     };
 
-    handleChangeScore = (id, delta) => {
+    const handleChangeScore = (id, delta) => {
         this.setState(prevState => {
             const player = prevState.players;
             player.forEach(item => {
@@ -32,30 +27,28 @@ class App extends React.Component{
         });
     };
 
-    render() {
-        return (
-            <div className="scoreboard">
-                <Header title="My scoreboard" player={this.props.players}/>
-                {
+    return (
+        <div className="scoreboard">
+            <Header title="My scoreboard" players={players}/>
+            {
 
-                    this.props.players.map((initial) => (
-                        <Player key={initial.id}
-                                       initial={initial}
-                                       removePlayer={this.handleRemovePlayer}
-                                       changeScore={this.handleChangeScore}>
-                        </Player>
-                        )
+                players.map((initial) => (
+                    <Player key={initial.id}
+                                   initial={initial}
+                                   removePlayer={handleRemovePlayer}
+                                   changeScore={handleChangeScore}>
+                    </Player>
                     )
-                }
-            </div>
-        );
-    }
+                )
+            }
+        </div>
+    );
 }
+//
+// const  mapStateToProps = (state) => ({
+//   //왼쪽은 props, 오른쪽은 store의 state
+//   players: state.playerReducer.players,
+// });
 
-const  mapStateToProps = (state) => ({
-  //왼쪽은 props, 오른쪽은 store의 state
-  players: state.playerReducer.players,
-});
-
-export default connect(mapStateToProps)(App);
-// export default App;
+// export default connect(mapStateToProps)(App);
+export default App;

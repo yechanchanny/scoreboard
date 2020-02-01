@@ -1,3 +1,7 @@
+import {act} from "react-dom/test-utils";
+
+let maxId = 4;
+
 const playerInitialState = {
     players : [
         {name: 'LDK1', score: 5, id: 1},
@@ -8,5 +12,17 @@ const playerInitialState = {
 };
 
 export const playerReducer = (state = playerInitialState, action) => {
+    switch (action.type) {
+        case 'ADD_PLAYER':
+            const players = [ ...state.players];
+            players.push({id: ++maxId, name: action.name, score:0});
+            return {
+                ...state,
+                players: players
+            }
+
+    }
+
+
     return state;
 };
