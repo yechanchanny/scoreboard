@@ -11,7 +11,7 @@ export class Stopwatch extends React.Component {
     //Dom이 렌더링 된 직후에 호출
     // api, 3rd 라이브러리 로딩
     componentDidMount() {
-        this.tickerRef = setInterval(() => {}, 1000);
+        this.tickRef = setInterval(this.tick, 1000);
     }
 
     //DOM이 파괴되기 직전에 호출
@@ -20,11 +20,18 @@ export class Stopwatch extends React.Component {
         clearInterval(this.tickerRef)
     }
 
+    tick = () => {
+        if(this.state.isRunning){
+            this.setState(prevState => ({
+                timer: prevState.timer + 1
+            }))
+        }
+    };
+
     handleStopwatch = () => {
         this.setState(prevState => {
             return {
-                isRunning: !prevState.isRunning,
-                timer : 1
+                isRunning: !prevState.isRunning
             }
         })
     };
