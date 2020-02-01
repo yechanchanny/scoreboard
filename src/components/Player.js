@@ -9,7 +9,7 @@ export const Player = (props) => {
             <button onClick={() => props.removePlayer(initial.id)}>delete</button>
             <span className="player-name">{initial.name}</span>
             <div>{initial.name}</div>
-            <Counter initial={initial}/>
+            <Counter initial={initial} changeScore={props.changeScore}/>
         </div>
     )
 };
