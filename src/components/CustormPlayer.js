@@ -2,7 +2,6 @@ import React from "react";
 import Player from "./Player";
 
 export const CustormPlayer = (props) =>{
-    console.log(props);
     let dynamicClass = 'svg';
     if (props.isHighScore) {
         dynamicClass += ' ' + 'is-high-score';
