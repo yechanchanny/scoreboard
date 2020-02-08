@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
 import {Header} from './components/Header';
-import Player from './components/Player';
+import {CustormPlayer} from './components/CustormPlayer';
+import AddPlayerForm from "./components/AddPlayerForm";
 import {useSelector} from "react-redux";
 
 function App() {
-
     const players = useSelector(state => state.playerReducer.players);
 
     // const handleRemovePlayer = (id) => {
@@ -15,31 +15,35 @@ function App() {
     //     })
     // };
 
-    const handleChangeScore = (id, delta) => {
-        this.setState(prevState => {
-            const player = prevState.players;
-            player.forEach(item => {
-                if(item.id === id){
-                   item.score += delta;
-               }
-            });
-            return {player : player}
-        });
-    };
+    // const handleChangeScore = (id, delta) => {
+    //     this.setState(prevState => {
+    //         const player = prevState.players;
+    //         player.forEach(item => {
+    //             if(item.id === id){
+    //                item.score += delta;
+    //            }
+    //         });
+    //         return {player : player}
+    //     });
+    // };
+
+    const isHighScore = () => {
+        return 0
+    }
 
     return (
         <div className="scoreboard">
             <Header title="My scoreboard" players={players}/>
             {
 
-                players.map((initial) => (
-                    <Player key={initial.id}
-                                   initial={initial}
-                                   changeScore={handleChangeScore}>
-                    </Player>
+                players.map((item) => (
+                    <CustormPlayer id={item.id} name={item.name} score={item.score} key={item.id}
+                                   isHighScore={isHighScore() === item.score}
+                    />
                     )
                 )
             }
+            <AddPlayerForm></AddPlayerForm>
         </div>
     );
 }

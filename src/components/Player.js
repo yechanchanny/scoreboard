@@ -1,23 +1,20 @@
 import React from "react"
 import Counter from "./Counter";
 import {removePlayer} from "../redux/actions";
-import {connect} from "react-redux";
+import {useDispatch} from "react-redux";
 
 const Player = (props) => {
-    const initial = props.initial;
+    const dispatch = useDispatch();
     return(
         <div className="player">
             <input type="checkbox"/>
-            <button onClick={() => props.removePlayer(initial.id)}>delete</button>
-            <span className="player-name">{initial.name}</span>
-            <div>{initial.name}</div>
-            <Counter initial={initial} changeScore={props.changeScore}/>
+            <button onClick={() => dispatch(removePlayer(props.id))}>delete</button>
+            <span className="player-name">{props.name}</span>
+            {props.children}
+            <div>{props.name}</div>
+            <Counter id={props.id} score={props.score} changeScore={props.changeScore}/>
         </div>
     )
 };
 
-const mapActionToProps = (dispatch) => ({
-   removePlayer : (id) => dispatch(removePlayer(id))
-});
-
-export default connect(null, mapActionToProps)(Player)
+export default Player;
