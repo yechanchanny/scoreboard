@@ -25,12 +25,20 @@ export const playerReducer = (state = playerInitialState, action) => {
 
         case 'CHANGE_SCORE':
             players = [...state.players];
-            players.forEach(action => {
-        });
+            players.forEach(item => {
+                if (item.id === action.id) {
+                    item.score += action.delta;
+                }
+            });
             return{
                 ...state,
                 players
             };
+
+        case 'REMOVE_PLAYER':
+            players = state.players.filter(item => item.id !== action.id);
+            return players;
+
         default:
                 return state;
     }

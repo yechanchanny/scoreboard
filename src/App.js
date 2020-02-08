@@ -1,19 +1,19 @@
 import React from 'react';
 import './App.css';
 import {Header} from './components/Header';
-import {Player} from './components/Player';
+import Player from './components/Player';
 import {useSelector} from "react-redux";
 
 function App() {
 
     const players = useSelector(state => state.playerReducer.players);
 
-    const handleRemovePlayer = (id) => {
-        this.setState(prevState =>{
-            const players = prevState.players.filter(item => item.id !==id);
-            return {players}
-        })
-    };
+    // const handleRemovePlayer = (id) => {
+    //     this.setState(prevState =>{
+    //         const players = prevState.players.filter(item => item.id !==id);
+    //         return {players}
+    //     })
+    // };
 
     const handleChangeScore = (id, delta) => {
         this.setState(prevState => {
@@ -35,7 +35,6 @@ function App() {
                 players.map((initial) => (
                     <Player key={initial.id}
                                    initial={initial}
-                                   removePlayer={handleRemovePlayer}
                                    changeScore={handleChangeScore}>
                     </Player>
                     )

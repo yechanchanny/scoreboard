@@ -8,8 +8,8 @@ export const Header = (props) => {
         <header>
             <h1>{ props.title }</h1>
             <Stopwatch></Stopwatch>
-            <span className="stats">Players: { props.player.name }</span>
-            <Stats/>
+            <span className="stats">Players: { props.player }</span>
+            <Stats players={props.players}></Stats>
         </header>
     )
 };
