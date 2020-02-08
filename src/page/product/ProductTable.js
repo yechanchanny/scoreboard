@@ -12,11 +12,9 @@ export const ProductTable = (props) => {
         categoryList.push(
             <ProductCategoryRow category={key} key={key}/>
         );
-        console.log(category[key]);
         category[key].forEach(item => {
-            const chan = category[key];
             categoryList.push(
-                <ProductRow/>
+                <ProductRow category={item} key={key}/>
             );
         });
 
