@@ -31,7 +31,7 @@ export const Menu = (props) =>{
                                 <NavLink to="/scoreboard" className="nav-link">Scoreboard</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink to="/product" className="nav-link">Product</NavLink>
+                                <NavLink to="/products" className="nav-link">Products</NavLink>
                             </NavItem>
                             <UncontrolledDropdown nav inNavbar>
                                 <DropdownToggle nav caret>
