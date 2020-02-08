@@ -12,17 +12,26 @@ const playerInitialState = {
 };
 
 export const playerReducer = (state = playerInitialState, action) => {
+    let players = null;
+
     switch (action.type) {
         case 'ADD_PLAYER':
-            const players = [ ...state.players];
+            players = [ ...state.players];
             players.push({id: ++maxId, name: action.name, score:0});
             return {
                 ...state,
                 players: players
-            }
+            };
 
+        case 'CHANGE_SCORE':
+            players = [...state.players];
+            players.forEach(action => {
+        });
+            return{
+                ...state,
+                players
+            };
+        default:
+                return state;
     }
-
-
-    return state;
 };
