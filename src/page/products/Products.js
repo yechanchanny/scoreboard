@@ -6,4 +6,4 @@ export const Products = (props) =>{
             Home
         </div>
     )
-};K
+};
