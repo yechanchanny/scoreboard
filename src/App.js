@@ -6,6 +6,7 @@ import AddPlayerForm from "./components/AddPlayerForm";
 import {useSelector} from "react-redux";
 import _ from 'lodash';
 import {FilterableProductTable} from "./page/product/FilterableProductTable";
+import {Root} from "./Root";
 
 function App() {
     const players = useSelector(state => state.playerReducer.players);
@@ -35,6 +36,7 @@ function App() {
 
     return (
         <div className="scoreboard">
+            <Root/>
             <FilterableProductTable/>
             <Header title="My scoreboard" players={players}/>
             {
