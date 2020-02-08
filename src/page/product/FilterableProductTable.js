@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {SearchBar} from "./SearchBar";
 import {ProductTable} from "./ProductTable";
 
@@ -13,11 +13,22 @@ const products = [
 
 
 export const FilterableProductTable = (props) => {
+    const [keyword, setKeyword] = useState(''); //input 상자 상태
+    const [stockCheck, setStockCheck] = useState(false); //checkbox 상태
 
     return(
         <div>
-            <SearchBar/>
-            <ProductTable products={products}/>
+            <SearchBar
+                keyword={keyword} setKeyword={setKeyword}
+                stockCheck={stockCheck} setStockCheck={setStockCheck}
+            />
+            <ProductTable
+                products={
+                    products
+                        .filter(item => item.name.indexOf(keyword) >= 0)
+                        .filter(item => stockCheck ? item.stocked : true)
+
+                }/>
         </div>
     )
 };
