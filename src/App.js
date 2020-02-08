@@ -5,7 +5,7 @@ import {CustormPlayer} from './components/CustormPlayer';
 import AddPlayerForm from "./components/AddPlayerForm";
 import {useSelector} from "react-redux";
 import _ from 'lodash';
-
+import {FilterableProductTable} from "./page/product/FilterableProductTable";
 
 function App() {
     const players = useSelector(state => state.playerReducer.players);
@@ -35,13 +35,16 @@ function App() {
 
     return (
         <div className="scoreboard">
+            <FilterableProductTable/>
             <Header title="My scoreboard" players={players}/>
             {
-                players.map((item) => (
-                    <CustormPlayer id={item.id} name={item.name} score={item.score} key={item.id}
-                                   isHighScore={isHighScore() === item.score}
-                    />
+                players.map((item) => {
+                    return (
+                        <CustormPlayer id={item.id} name={item.name} score={item.score} key={item.id}
+                                       isHighScore={isHighScore() === item.score}
+                        />
                     )
+                    }
                 )
             }
             <AddPlayerForm></AddPlayerForm>
